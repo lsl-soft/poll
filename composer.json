@@ -1,0 +1,33 @@
+{
+    "name": "lslsoft/yii2-poll",
+    "type": "yii2-extension",
+    
+    "description": "A poll widget for yii2",
+    "keywords": [
+        "yii2",
+        "extension",
+        "poll"
+        
+    ],
+    "homepage": "http://lslsoft.com",
+    
+    "license": "BSD-3-Clause",
+    "authors": [
+        {
+            "name": "Leonid Lyalin",
+            "email": "lsl@lslsoft.com",
+            "homepage": "http://www.lslsoft.com/"
+        }
+    ],
+    "require": {
+       
+    },
+    "autoload": {
+        "psr-4": {
+            "yii\\poll\\": ""
+        }
+    },
+    "extra": {
+       
+    }
+}
