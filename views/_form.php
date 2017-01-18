@@ -38,11 +38,7 @@ function translate($text){
     $answer1 = ArrayHelper::map($answersProvider, 'id', 'answer');
     $answer =array_map('translate',$answer1);
     
-//    $num = 0;
-//    foreach ($answer as $oneAnswer) {
-//        $answer[$num]['answer'] = Yii::t('polls', $oneAnswer);
-//        $num++;
-//    }
+
     if ($pollsProvider->allow_mulitple) {
         echo $form->field($model, 'id_answer')
                 ->checkBoxList($answer, ['separator' => '</br>'])
@@ -58,7 +54,7 @@ function translate($text){
 
 
     <div class="form-group">
-        <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Go!') : Yii::t('app', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+        <?= Html::submitButton($model->isNewRecord ? Yii::t('polls', 'Send') : Yii::t('polls', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

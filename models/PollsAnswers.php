@@ -41,9 +41,9 @@ class PollsAnswers extends \yii\db\ActiveRecord {
      */
     public function attributeLabels() {
         return [
-            'id' => Yii::t('app', '№ answer'),
-            'id_poll' => Yii::t('app', '№ poll'),
-            'answer' => Yii::t('app', 'answer'),
+            'id' => Yii::t('polls', '№ answer'),
+            'id_poll' => Yii::t('polls', '№ poll'),
+            'answer' => Yii::t('polls', 'Answer'),
         ];
     }
 

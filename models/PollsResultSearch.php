@@ -18,8 +18,8 @@ class PollsResultSearch extends PollsResult {
 
     public function rules() {
         return [
-                [['num', 'id_poll', 'id_answer'], 'integer'],
-                [['answer'], 'safe']
+            [['num', 'id_poll', 'id_answer'], 'integer'],
+            [['answer'], 'safe']
         ];
     }
 
@@ -57,26 +57,11 @@ class PollsResultSearch extends PollsResult {
         }
 
         $query->joinWith('idAnswer');
-        // grid filtering conditions
-//        $query->andFilterWhere([
-//            'num' => $this->num,
-//            'id_poll' => $this->id_poll,
-//            'id_answer' => $this->id_answer,
-//        ]);
-//        $query->andFilterWhere(['like', 'polls_answers.answer', $this->answer]);
+
         $query->groupBy(['id_answer']);
-       // $query->count();
+
 
         return $dataProvider;
     }
 
-//        $query = PollsResult::find()
-//                ->select('id_answer, count(`id_answer`) as `res`')
-//                ->groupBy('id_answer');
-//        
-//               
-//        $dataProvider = new ActiveDataProvider([
-//           'query' => $query,
-//        ]);
-//        return $dataProvider;
 }

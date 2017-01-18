@@ -23,7 +23,7 @@ class PollAsset extends AssetBundle
     public function init()
     {
         // Tell AssetBundle where the assets files are
-        $this->sourcePath = __DIR__ . "/assets";
+     //   $this->sourcePath = __DIR__ . "/assets";
         parent::init();
     }
 }

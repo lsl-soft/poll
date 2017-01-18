@@ -5,7 +5,8 @@ namespace lslsoft\poll\models;
 use Yii;
 
 /**
- * This is the model class for table "polls".
+ * This is the model class for table "polls", 
+ * which contains polls questions and main information
  *
  * @property integer $id
  * @property string $question
@@ -18,21 +19,19 @@ use Yii;
  *
  * @property PollsAnswers[] $pollsAnswers
  */
-class Polls extends \yii\db\ActiveRecord
-{
+class Polls extends \yii\db\ActiveRecord {
+
     /**
      * @inheritdoc
      */
-    public static function tableName()
-    {
+    public static function tableName() {
         return 'polls';
     }
 
     /**
      * @inheritdoc
      */
-    public function rules()
-    {
+    public function rules() {
         return [
             [['question', 'date_beg', 'date_end', 'allow_mulitple', 'is_random', 'anonymous', 'show_vote'], 'required'],
             [['question'], 'string'],
@@ -44,8 +43,10 @@ class Polls extends \yii\db\ActiveRecord
     /**
      * @inheritdoc
      */
-    public function attributeLabels()
-    {
+    public function attributeLabels() {
+        /**
+         * @todo change 'app'/'polls' for i18n
+         */
         return [
             'id' => Yii::t('app', '№ poll'),
             'question' => Yii::t('app', 'Question'),
@@ -61,8 +62,7 @@ class Polls extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getPollsAnswers()
-    {
+    public function getPollsAnswers() {
         return $this->hasMany(PollsAnswers::className(), ['id_poll' => 'id']);
     }
 
@@ -70,26 +70,41 @@ class Polls extends \yii\db\ActiveRecord
      * @inheritdoc
      * @return PollsQuery the active query used by this AR class.
      */
-    public static function find()
-    {
+    public static function find() {
         return new PollsQuery(get_called_class());
     }
-    
+
     /**
      * Return polls which are active today (date_beg>=today <=date_end
      * @param type $date - today date
      */
     public static function getPollsDate($date) {
-        return $this::find()
-                ->where('date_beg<=:dateToday',['dateToday'=>$date])
-                ->andWhere('date_end>=:dateToday',['dateToday'=>$date])
-                ->all();
-    }
-    public static function getPollsToday() {
         return self::find()
-                ->where('date_beg<=:dateToday',['dateToday'=>date('Y-m-d')])
-                ->andWhere('date_end>=:dateToday',['dateToday'=>date('Y-m-d')])
-                ->one();
+                        ->where('date_beg<=:dateToday', ['dateToday' => $date])
+                        ->andWhere('date_end>=:dateToday', ['dateToday' => $date])
+                        ->all();
     }
-    
+
+    /**
+     * Returns poll which is active today
+     * @return type poll which is active today
+     */
+    public static function getPollToday() {
+        return self::find()
+                        ->where('date_beg<=:dateToday', ['dateToday' => date('Y-m-d')])
+                        ->andWhere('date_end>=:dateToday', ['dateToday' => date('Y-m-d')])
+                        ->one();
+    }
+
+    /**
+     * Return poll according to id
+     * @param type $id - id of poll
+     * @return type poll 
+     */
+    public static function getPollId($id) {
+        return self::find()
+                        ->where('id=:poll_id', ['poll_id' => $id])
+                        ->one();
+    }
+
 }

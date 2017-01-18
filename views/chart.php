@@ -2,10 +2,6 @@
 /**
  * show results. simple horizontal bar chart
  */
-//use frontend\widgets\pollwidget\models\Polls;
-//use frontend\widgets\pollwidget\models\PollsAnswers;
-//use frontend\widgets\pollwidget\models\PollsResult;
-//use frontend\widgets\pollwidget\models\PollsResultSearch;
 
 
 use yii\bootstrap\Progress;
@@ -45,7 +41,7 @@ use yii\helpers\Html;
     usort($res, "cmp");
     $maxval = intval($res[0]['res']);
     foreach ($res as $val) {
-        echo "<h3>" . Yii::t('polls',$val['answer']) . "  " . $val['res'] . "</h3>";
+        echo "<h3>" . Yii::t('polls',$val['answer']) . ":  " . $val['res'] . "</h3>";
         echo Progress::widget([
             'percent' => intval($val['res']) / $maxval * 100,
         ]);

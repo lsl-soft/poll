@@ -17,6 +17,8 @@ use yii\base\Widget;
 class Poll extends Widget {
 
     public $model;
+    public $pollId;
+    public $resultView;
     private $pollsProvider;
 
     public function init() {
@@ -33,8 +35,8 @@ class Poll extends Widget {
         $answers = $model->id_answer;
         foreach ($answers as $id_answer) {
             $modelMulti = new PollsResult();
-            $modelMulti->id_user = $model->id_user; 
-            $modelMulti->id_poll = $model->id_poll; 
+            $modelMulti->id_user = $model->id_user;
+            $modelMulti->id_poll = $model->id_poll;
             $modelMulti->num = $model->num;
             $modelMulti->create_at = $model->create_at;
             $modelMulti->ip = $model->ip;
@@ -46,9 +48,8 @@ class Poll extends Widget {
                 print_r($modelMulti->errors);
                 return false;
             } else {
-                // $model->id = $model->getPrimaryKey() + 1;
+
                 $modelsaved = true;
-                //break;
             }
         }
         return $modelsaved;
@@ -76,17 +77,32 @@ class Poll extends Widget {
         return $model;
     }
 
+    /**
+     * Return poll for voting
+     * @return type Polls 
+     */
+    public function getProvider() {
+        if (isset($this->pollId)) {
+            return Polls::getPollId($this->pollId);
+        } else {
+            return Polls::getPollToday();
+        }
+    }
 
-
+    /**
+     * 
+     * @return type
+     */
     public function run() {
         // Register AssetBundle
         PollAsset::register($this->getView());
 
         $model = new PollsResult();
-        /**
-         * Let's prepare  more providers
-         */
-        $this->pollsProvider = Polls::getPollsToday();
+        $this->pollsProvider = $this->getProvider();
+        if (!isset($this->pollsProvider))     {
+            return;
+            
+        }
         $modelsaved = false;
         if ($model->load(Yii::$app->request->post())) {
             /**
@@ -103,20 +119,27 @@ class Poll extends Widget {
             }
         }
         if ($modelsaved) {
+            if (!$this->pollsProvider->show_vote) {
+                return;//if show result wasn't allowed nothing would happen
+            }
             $searchModel = new PollsResultSearch();
             $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-            return \Yii::$app->controller->renderPartial('@lslsoft/poll/views/chart', 
-                    ['dataProvider' => $dataProvider,
+            if (isset($this->resultView)) {
+                if ($this->resultView === 'table') {
+                    return \Yii::$app->controller->renderPartial('@lslsoft/poll/views/table', ['dataProvider' => $dataProvider,
+                                'searchModel' => $searchModel,
+                                'question' => $this->pollsProvider->question]); //, 'id' => $model->getPrimaryKey()]);}  
+                }
+            }
+            return \Yii::$app->controller->renderPartial('@lslsoft/poll/views/chart', ['dataProvider' => $dataProvider,
                         'searchModel' => $searchModel,
-                        'question' => $this->pollsProvider->question]); //, 'id' => $model->getPrimaryKey()]);
+                        'question' => $this->pollsProvider->question]); //, 'id' => $model->getPrimaryKey()]);}
         } else {
 
             return \Yii::$app->controller->renderPartial('@lslsoft/poll/views/create', [
                         'model' => $model,
-                        'pollsProvider' => $this->pollsProvider,
-            ]);
+                        'pollsProvider' => $this->pollsProvider,]);
         }
     }
 
 }
-
