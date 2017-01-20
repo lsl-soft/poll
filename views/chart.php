@@ -1,9 +1,8 @@
 <?php
+
 /**
  * show results. simple horizontal bar chart
  */
-
-
 use yii\bootstrap\Progress;
 use yii\helpers\Html;
 
@@ -35,13 +34,18 @@ use yii\helpers\Html;
 
     $model = $dataProvider->getModels();
     $res = array();
+    $sumRes = 0;
     foreach ($model as $answer) {
         $res[] = ['answer' => $answer->idAnswer->answer, 'res' => $answer->res];
+        $sumRes += $answer->res;
     }
+    /**
+     * sort result in 
+     */
     usort($res, "cmp");
     $maxval = intval($res[0]['res']);
     foreach ($res as $val) {
-        echo "<h3>" . Yii::t('polls',$val['answer']) . ":  " . $val['res'] . "</h3>";
+        echo "<h3>" . Yii::t('polls', $val['answer']) . ":  " . $val['res'] . " (" . number_format($val['res'] / $sumRes * 100, 2) . "%)" . "</h3>";
         echo Progress::widget([
             'percent' => intval($val['res']) / $maxval * 100,
         ]);

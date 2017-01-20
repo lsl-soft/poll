@@ -14,7 +14,11 @@ use yii\helpers\Html;
     <h2><?= Html::encode(Yii::t('polls',$question)) ?></h2>
     <h3><?= Html::encode(Yii::t('polls', "The results of the poll")) ?></h3>
 
+
     <?
+    /**
+     * @todo get rid of number of records
+     */
     echo GridView::widget([
         'dataProvider' => $dataProvider,
         'columns' => [

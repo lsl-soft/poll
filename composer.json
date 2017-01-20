@@ -1,16 +1,14 @@
 {
     "name": "lslsoft/yii2-poll",
     "type": "yii2-extension",
-    
     "description": "A poll widget for yii2",
     "keywords": [
         "yii2",
         "extension",
         "poll"
-        
+
     ],
     "homepage": "http://lslsoft.com",
-    
     "license": "BSD-3-Clause",
     "authors": [
         {
@@ -20,7 +18,6 @@
         }
     ],
     "require": {
-       
     },
     "autoload": {
         "psr-4": {
@@ -28,6 +25,5 @@
         }
     },
     "extra": {
-       
     }
 }
