@@ -49,10 +49,12 @@ and for inserting some sample data:
 ```
 
 ###Usage
-
+```php
 use lslsoft\poll\Poll;
 
  <?= Poll::widget(); ?>
+ ```
+ 
 
 Without any paramentr will choose a poll for which date_beg<today<date_end;
 
