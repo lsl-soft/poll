@@ -32,7 +32,7 @@ to apply migrations add in your config file
 ```php
 'migrate-lslsoft-create' => [
             'class' => 'yii\console\controllers\MigrateController',
-            'migrationPath' => 'vendor/lslsoft/yii2-poll/migrations',
+            'migrationPath' => 'vendor/lslsoft/yii2-poll/migrations/create',
             'migrationTable' => 'migration_lslsoft_create',
         ],
 ```
@@ -49,7 +49,7 @@ and for inserting some sample data:
 ```php
 'migrate-lslsoft-insert' => [
             'class' => 'yii\console\controllers\MigrateController',
-            'migrationPath' => 'vendor/lslsoft/yii2-poll/migrations',
+            'migrationPath' => 'vendor/lslsoft/yii2-poll/migrations/insert',
             'migrationTable' => 'migration_lslsoft_insert',
         ],
 
