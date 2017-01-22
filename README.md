@@ -17,11 +17,11 @@ or add this in require section of composer.json of your project
 
 Migrations are in the folder
 
-    *lslsoft/yii2-poll/migrations/create*
+    lslsoft/yii2-poll/migrations/create
 
 Files which are responsible for creating tables and relations needed
 
-    *lslsoft/yii2-poll/migrations/create*
+    lslsoft/yii2-poll/migrations/create
 
 Files which are responsible for inserting some sample data
 
@@ -176,6 +176,6 @@ This project is licensed under the BSD-3-Clause
 
 ## Acknowledgments
 
-* Thanks to all Yii framework team for inspiration and special thanks to Alexander Makarov (samdark)
-* Thanks to Insolita for magic yii2-migrik
+* Thanks to all Yii framework team for inspiration and special thanks to Alexander Makarov (@samdark)
+* Thanks to @Insolita for magic yii2-migrik
 
