@@ -17,11 +17,11 @@ or add this in require section of composer.json of your project
 
 Migrations are in the folder
 
-*lslsoft/yii2-poll/migrations/create*
+    *lslsoft/yii2-poll/migrations/create*
 
 Files which are responsible for creating tables and relations needed
 
-*lslsoft/yii2-poll/migrations/create*
+    *lslsoft/yii2-poll/migrations/create*
 
 Files which are responsible for inserting some sample data
 
@@ -58,6 +58,25 @@ to run use the command
 ```php
 php yii migrate-lslsoft-insert
 ```
+###Internalization
+
+You should add in your config file
+
+'i18n' => [
+            'translations' => [
+                'sourceLanguage' => 'en-En',
+                
+                'polls*' => [
+                    'class' => 'yii\i18n\PhpMessageSource',
+                    'basePath' => '@yii/vendor/lslsoft/poll/messages',
+                ],
+                
+            ],
+        ],
+Basic language for extension - english
+In the folder 
+    *lslsoft/yii2-poll/migrations/messages*
+you will find folder for russian and chinese
 
 ###Usage
 ```php
@@ -66,9 +85,9 @@ use lslsoft\poll\Poll;
  <?= Poll::widget(); ?>
 
 ```
-Without any parameter will choose a poll for which 
+Without any parameter will choose a first poll for which 
 
-    date_beg<today<date_end;
+    date_beg < today < date_end;
 
 ```php
  <?= Poll::widget([
@@ -93,29 +112,45 @@ On default results will be shown as simple bar chart
 will display results as a GridView;
 
 
-## Running the tests
+### Tables
 
-Explain how to run the automated tests for this system
-
-### Break down into end to end tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-### And coding style tests
-
-Explain what these tests test and why
-
-```
-Give an example
+```sql
+TABLE `polls` (
+  `id` int(11) NOT NULL COMMENT '№ poll',
+  `question` text NOT NULL COMMENT 'Question', //text of the poll's question 
+  `date_beg` date NOT NULL COMMENT 'Date begin',//Date when poll should start
+  `date_end` date NOT NULL COMMENT 'Date end', //Date when poll should end
+  `allow_multiple` tinyint(4) NOT NULL COMMENT 'Multiple answer', //Define type of poll - with only one possible answer or not
+  `is_random` tinyint(4) NOT NULL COMMENT 'Random order', //if true - display answers in random order
+  `anonymous` tinyint(4) NOT NULL COMMENT 'Anonymous answers',//if true - user can vote without sign up
+  `show_vote` int(11) NOT NULL COMMENT 'Show number of votes' //if true - the results will be shown after sending vote
+) ENGINE=InnoDB DEFAULT CHARSET=;
 ```
 
-## Deployment
+```sql
+CREATE TABLE `polls_answers` (
+  `id` int(11) NOT NULL COMMENT '№ answer',
+  `id_poll` int(11) DEFAULT NULL COMMENT '№ poll',
+  `answer` text NOT NULL COMMENT 'answer'
+) ENGINE=InnoDB;
 
-Add additional notes about how to deploy this on a live system
+```
+
+```sql
+CREATE TABLE `polls_result` (
+  `num` int(11) NOT NULL DEFAULT '0' COMMENT 'Number of the voting',
+  `id_poll` int(11) NOT NULL COMMENT '№ of poll',
+  `id_answer` int(11) NOT NULL COMMENT '№ of answer',
+  `id_user` int(11) NOT NULL,
+  `id` int(11) NOT NULL,
+  `create_at` datetime NOT NULL,
+  `update_at` datetime NOT NULL,
+  `ip` varchar(20) NOT NULL,
+  `host` varchar(20) DEFAULT NULL
+) ENGINE=InnoDB;
+```
+
+
 
 ## Built With
 
@@ -133,16 +168,14 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 
 ## Authors
 
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
-
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
+* **Leonid Lyalin** 
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+This project is licensed under the BSD-3-Clause
 
 ## Acknowledgments
 
-* Hat tip to anyone who's code was used
-* Inspiration
-* etc
+* Thanks to all Yii framework team for inspiration and special thanks to Alexander Makarov (samdark)
+* Thanks to Insolita for magic yii2-migrik
+
