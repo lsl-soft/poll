@@ -34,6 +34,11 @@ to apply migrations add in your config file
             'migrationTable' => 'migration_lslsoft_create',
         ],
 ```
+to run use the command 
+
+```php
+php yii migrate-lslsoft-create
+```
 
 for creating tables and relations needed
 
@@ -48,15 +53,45 @@ and for inserting some sample data:
 
 ```
 
+to run use the command 
+
+```php
+php yii migrate-lslsoft-insert
+```
+
 ###Usage
 ```php
 use lslsoft\poll\Poll;
 
  <?= Poll::widget(); ?>
- ```
- 
 
-Without any paramentr will choose a poll for which date_beg<today<date_end;
+```
+Without any parameter will choose a poll for which 
+
+    date_beg<today<date_end;
+
+```php
+ <?= Poll::widget([
+                    'idPoll' => 1,
+                    
+                ]                     
+                    ); ?>
+```
+
+will use poll from table polls with id=1;
+
+On default results will be shown as simple bar chart
+
+```php
+ <?= Poll::widget([
+                    'idPoll' => 1,
+                    'resultView'=>'table'
+                    
+                ]                     
+                    ); ?>
+```
+will display results as a GridView;
+
 
 ## Running the tests
 
