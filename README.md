@@ -3,6 +3,8 @@
 This is simple poll widget for yii2 framework.
 You can use both single and multiple answer.
 
+([More information lslsoft.com](http://lslsoft.com/2017/01/22/simple-poll-widget-for-yii2/)
+
 ### Installing
 
 Yii2-poll can be installed using composer. Run following command to download and install yii2-poll:
