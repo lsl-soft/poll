@@ -3,7 +3,7 @@
 This is simple poll widget for yii2 framework.
 You can use both single and multiple answer.
 
-([More information lslsoft.com](http://lslsoft.com/2017/01/22/simple-poll-widget-for-yii2/)
+([More information lslsoft.com](http://lslsoft.com/2017/01/22/simple-poll-widget-for-yii2/))
 
 ### Installing
 
@@ -152,8 +152,6 @@ CREATE TABLE `polls_result` (
 ) ENGINE=InnoDB;
 ```
 
-
-<<<<<<< HEAD
 ### Author
 
 * **Leonid Lyalin** 
@@ -162,33 +160,8 @@ CREATE TABLE `polls_result` (
 
 This project is licensed under the BSD-3-Clause
 
-### Acknowledgments
-=======
-
-## Built With
-
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
-
-## Contributing
-
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
-
-## Versioning
-
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
-
-## Authors
-
-* **Leonid Lyalin** 
-
-## License
-
-This project is licensed under the BSD-3-Clause
-
 ## Acknowledgments
->>>>>>> origin/master
+
 
 * Thanks to all Yii framework team for inspiration and special thanks to Alexander Makarov (@samdark)
 * Thanks to @Insolita for magic yii2-migrik
