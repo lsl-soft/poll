@@ -3,7 +3,7 @@
 use yii\db\Schema;
 use yii\db\Migration;
 
-class m170120_111708_polls_answersDataInsert extends Migration
+class m170122_212035_polls_answersDataInsert extends Migration
 {
 
     public function init()
@@ -20,7 +20,7 @@ class m170120_111708_polls_answersDataInsert extends Migration
     [
         'id' => '1',
         'id_poll' => '1',
-        'answer' => 'Yes, very much2',
+        'answer' => 'Yes, very much',
     ],
     [
         'id' => '2',
@@ -43,16 +43,6 @@ class m170120_111708_polls_answersDataInsert extends Migration
         'answer' => 'From time to time',
     ],
     [
-        'id' => '7',
-        'id_poll' => '2',
-        'answer' => 'qwery',
-    ],
-    [
-        'id' => '14',
-        'id_poll' => '2',
-        'answer' => 'qwerymerry',
-    ],
-    [
         'id' => '15',
         'id_poll' => '3',
         'answer' => 'Not in the summer',
@@ -66,51 +56,6 @@ class m170120_111708_polls_answersDataInsert extends Migration
         'id' => '17',
         'id_poll' => '3',
         'answer' => 'No',
-    ],
-    [
-        'id' => '18',
-        'id_poll' => '3',
-        'answer' => 'tratete',
-    ],
-    [
-        'id' => '21',
-        'id_poll' => '3',
-        'answer' => 'qwaszx',
-    ],
-    [
-        'id' => '33',
-        'id_poll' => null,
-        'answer' => 'llllllqqqqq',
-    ],
-    [
-        'id' => '34',
-        'id_poll' => null,
-        'answer' => 'my answer',
-    ],
-    [
-        'id' => '35',
-        'id_poll' => '12',
-        'answer' => 'aaa',
-    ],
-    [
-        'id' => '36',
-        'id_poll' => '12',
-        'answer' => 'aaa',
-    ],
-    [
-        'id' => '38',
-        'id_poll' => '1',
-        'answer' => 'I like to move it move it Yes!',
-    ],
-    [
-        'id' => '39',
-        'id_poll' => '13',
-        'answer' => 'nhfhfff',
-    ],
-    [
-        'id' => '42',
-        'id_poll' => '10',
-        'answer' => 'dadd',
     ],
     [
         'id' => '49',

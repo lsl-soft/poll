@@ -6,11 +6,7 @@
 use yii\bootstrap\Progress;
 use yii\helpers\Html;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 ?>
 <div class="polls-result-show">
 
@@ -32,24 +28,45 @@ use yii\helpers\Html;
         return ($a['res'] > $b['res']) ? -1 : 1;
     }
 
-    $model = $dataProvider->getModels();
+    if (!is_array($dataProvider)) {
+        $model = $dataProvider->getModels();
+    } else {
+        $model = $dataProvider;
+    }
     $res = array();
-    $sumRes = 0;
+
+    
     foreach ($model as $answer) {
-        $res[] = ['answer' => $answer->idAnswer->answer, 'res' => $answer->res];
-        $sumRes += $answer->res;
+        $res[] = ['answer' => $answer->idAnswer->answer, 'res' => $answer->res];        
+    }
+
+    if (!isset($sumRes)) {
+        $sumRes = 0;
+        foreach ($model as $answer) {
+            $sumRes += $answer->res;
+        }
     }
     /**
      * sort result in 
      */
     usort($res, "cmp");
-    $maxval = intval($res[0]['res']);
-    foreach ($res as $val) {
-        echo "<h3>" . Yii::t('polls', $val['answer']) . ":  " . $val['res'] . " (" . number_format($val['res'] / $sumRes * 100, 2) . "%)" . "</h3>";
-        echo Progress::widget([
-            'percent' => intval($val['res']) / $maxval * 100,
-        ]);
+    
+    /**
+     * Max value of polls, using for showing results
+     * Maximum values has maximum bar
+     * @var integer $maxVal Max value of polls, using for showing results
+     */
+    $maxVal = intval($res[0]['res']);
+    
+    if ($sumRes > 0) {
+        foreach ($res as $val) {
+            echo "<h3>" . Yii::t('polls', $val['answer']) . ":  " . $val['res'] . " (" . number_format($val['res'] / $sumRes * 100, 2) . "%)" . "</h3>";
+            echo Progress::widget([
+                'percent' => intval($val['res']) / $maxVal * 100,
+            ]);
+        }
     }
+   $max
     ?>
 
 </div>

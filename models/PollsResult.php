@@ -30,7 +30,7 @@ class PollsResult extends \yii\db\ActiveRecord {
     const SCENARIO_SINGLE = 'not_allow_multiple';
 
     /**
-     * @const
+     * @const can vote without sign up
      * 
      */
     const SCENARIO_ANONYMOUS = 'anonymous';
@@ -81,14 +81,13 @@ class PollsResult extends \yii\db\ActiveRecord {
      */
     public function attributeLabels() {
         return [
-            'num' => Yii::t('app', 'Number of answers'),
-            'id_poll' => Yii::t('app', '№ poll'),
-            'id_answer' => Yii::t('app', '№ answer'),
-            'id_user' => Yii::t('app', 'Id User'),
-            'create_at' => Yii::t('app', 'Created at'),
-            'ip' => Yii::t('app', 'User IP'),
-            'host' => Yii::t('app', 'User host')
-                // 'res' => Yii::t('app', 'User host'),
+            'num' => Yii::t('polls', 'Number of answers'),
+            'id_poll' => Yii::t('polls', '№ poll'),
+            'id_answer' => Yii::t('polls', '№ answer'),
+            'id_user' => Yii::t('polls', 'Id User'),
+            'create_at' => Yii::t('polls', 'Created at'),
+            'ip' => Yii::t('polls', 'User IP'),
+            'host' => Yii::t('polls', 'User host')
         ];
     }
 
@@ -100,10 +99,18 @@ class PollsResult extends \yii\db\ActiveRecord {
         return new PollsResultQuery(get_called_class());
     }
 
+    /**
+     * Return record from polls_answer with predefined id
+     * @return type PollAnswer
+     */
     public function getIdAnswer() {
         return $this->hasOne(PollsAnswers::className(), ['id' => 'id_answer']);
     }
 
+    /**
+     * Return text of answer
+     * @return type string
+     */
     public function getAnswer() {
         return $this->idAnswer->answer;
     }
@@ -113,6 +120,41 @@ class PollsResult extends \yii\db\ActiveRecord {
      */
     public function getIdUser() {
         return $this->hasOne(User::className(), ['id' => 'id_user']);
+    }
+
+    /**
+     * Return all polls results for certain poll
+     * @param type $id_poll 
+     * @return type
+     */
+    public static function getPollsId($id_poll) {
+        return self::find()
+                        ->where('id_poll=:id_poll', ['id_poll' => $id_poll])
+                        ->all();
+    }
+
+    /**
+     * Return max value of field num -
+     * amount of voting for multiple answers
+     * @param type $id_poll integer - 
+     * @return type integer
+     */
+    public static function getMaxNum($id_poll) {
+        return self::find()
+                        ->where('id_poll=:id_poll', ['id_poll' => $id_poll])
+                        ->max('num');
+    }
+/**
+ * Return joined number of records
+ * @param integer $id_poll
+ * @return PollsResult set of records
+ */
+    public static function getResults($id_poll) {
+        return self::find()
+                        ->select('id_answer, count(`id_answer`) as `res`')
+                        ->where(['polls_result.id_poll:=id_poll', ['id_poll' => $id_poll]])
+                        ->joinWith('idAnswer')
+                        ->groupBy(['id_answer']);
     }
 
 }

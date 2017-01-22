@@ -3,7 +3,7 @@
 use yii\db\Schema;
 use yii\db\Migration;
 
-class m170120_110218_polls extends Migration
+class m170122_211752_polls extends Migration
 {
 
     public function init()
@@ -23,10 +23,10 @@ class m170120_110218_polls extends Migration
                 'question'=> $this->text()->notNull()->comment('Question'),
                 'date_beg'=> $this->date()->notNull()->comment('Date begin'),
                 'date_end'=> $this->date()->notNull()->comment('Date end'),
-                'allow_mulitple'=> $this->smallInteger(4)->notNull()->comment('multiple answer'),
-                'is_random'=> $this->smallInteger(4)->notNull()->comment('random order'),
-                'anonymous'=> $this->smallInteger(4)->notNull()->comment('anonymous answers'),
-                'show_vote'=> $this->integer(11)->notNull()->comment('show number of votes'),
+                'allow_multiple'=> $this->smallInteger(4)->notNull()->comment('Multiple answer'),
+                'is_random'=> $this->smallInteger(4)->notNull()->comment('Random order'),
+                'anonymous'=> $this->smallInteger(4)->notNull()->comment('Anonymous answers'),
+                'show_vote'=> $this->integer(11)->notNull()->comment('Show number of votes'),
             ],$tableOptions
         );
         $this->createIndex('id_2','{{%polls}}','id',true);

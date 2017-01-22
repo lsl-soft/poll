@@ -3,7 +3,7 @@
 use yii\db\Schema;
 use yii\db\Migration;
 
-class m170120_110250_polls_answers extends Migration
+class m170122_211931_polls_answers extends Migration
 {
 
     public function init()

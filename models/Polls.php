@@ -36,7 +36,7 @@ class Polls extends \yii\db\ActiveRecord {
             [['question', 'date_beg', 'date_end', 'allow_mulitple', 'is_random', 'anonymous', 'show_vote'], 'required'],
             [['question'], 'string'],
             [['date_beg', 'date_end'], 'safe'],
-            [['allow_mulitple', 'is_random', 'anonymous', 'show_vote'], 'integer'],
+            [['allow_multiple', 'is_random', 'anonymous', 'show_vote'], 'integer'],
         ];
     }
 
@@ -48,14 +48,14 @@ class Polls extends \yii\db\ActiveRecord {
          * @todo change 'app'/'polls' for i18n
          */
         return [
-            'id' => Yii::t('app', '№ poll'),
-            'question' => Yii::t('app', 'Question'),
-            'date_beg' => Yii::t('app', 'Date begin'),
-            'date_end' => Yii::t('app', 'Date end'),
-            'allow_mulitple' => Yii::t('app', 'multiple answer'),
-            'is_random' => Yii::t('app', 'random order'),
-            'anonymous' => Yii::t('app', 'anonymous answers'),
-            'show_vote' => Yii::t('app', 'show number of votes'),
+            'id' => Yii::t('polls', '№ poll'),
+            'question' => Yii::t('polls', 'Question'),
+            'date_beg' => Yii::t('polls', 'Date begin'),
+            'date_end' => Yii::t('polls', 'Date end'),
+            'allow_multiple' => Yii::t('polls', 'Multiple answer'),
+            'is_random' => Yii::t('polls', 'Random order'),
+            'anonymous' => Yii::t('polls', 'Anonymous answers'),
+            'show_vote' => Yii::t('polls', 'Show number of votes'),
         ];
     }
 
@@ -101,9 +101,9 @@ class Polls extends \yii\db\ActiveRecord {
      * @param type $id - id of poll
      * @return type poll 
      */
-    public static function getPollId($id) {
+    public static function getIdPoll($id_poll) {
         return self::find()
-                        ->where('id=:poll_id', ['poll_id' => $id])
+                        ->where('id=:id_poll', ['id_poll' => $id_poll])
                         ->one();
     }
 
