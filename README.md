@@ -3,7 +3,11 @@
 This is simple poll widget for yii2 framework.
 You can use both single and multiple answer.
 
+<<<<<<< HEAD
 ([More information lslsoft.com](http://lslsoft.com/2017/01/22/simple-poll-widget-for-yii2/)
+=======
+([More information: lslsoft.com](http://lslsoft.com/2017/01/22/simple-poll-widget-for-yii2/))
+>>>>>>> origin/master
 
 ### Installing
 
@@ -152,8 +156,11 @@ CREATE TABLE `polls_result` (
 ) ENGINE=InnoDB;
 ```
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> origin/master
 ### Author
 
 * **Leonid Lyalin** 
@@ -162,6 +169,7 @@ CREATE TABLE `polls_result` (
 
 This project is licensed under the BSD-3-Clause
 
+<<<<<<< HEAD
 
 ### Authors
 
@@ -169,6 +177,9 @@ This project is licensed under the BSD-3-Clause
 
 
 ### Acknowledgments
+=======
+## Acknowledgments
+>>>>>>> origin/master
 
 
 * Thanks to all Yii framework team for inspiration and special thanks to Alexander Makarov (@samdark)
