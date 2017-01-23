@@ -98,7 +98,7 @@ class Polls extends \yii\db\ActiveRecord {
 
     /**
      * Return poll according to id
-     * @param type $id - id of poll
+     * @param type $id_poll - id of poll
      * @return type poll 
      */
     public static function getIdPoll($id_poll) {

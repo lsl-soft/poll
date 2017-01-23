@@ -46,24 +46,9 @@ class PollsResultSearch extends PollsResult {
                 ->groupBy(['id_answer'])
                 ->where(['polls_result.id_poll'=>$params['id_poll']]);
                 
-        // add conditions that should always apply here
-
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
-
-//        if (!($this->load($params) && $this->validate())) {
-//            // uncomment the following line if you do not want to return any records when validation fails
-//            // $query->where('0=1');
-//            $query->where(['polls_result.id_poll'=>$params['id_poll']]);
-//            $query->joinWith(['idAnswer']);
-//            return $dataProvider;
-//        }
-
-//        $query->joinWith('idAnswer');
-//
-//        $query->groupBy(['id_answer']);
-
 
         return $dataProvider;
     }

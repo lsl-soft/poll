@@ -35,14 +35,6 @@ class PollsResult extends \yii\db\ActiveRecord {
      */
     const SCENARIO_ANONYMOUS = 'anonymous';
 
-    /**
-     *
-     * @property array for checkboxlist checked items
-     * 
-     * @todo make this property to work in form checkBoxList instead of 'id_poll'
-     */
-    //public $result;
-
     public static function tableName() {
         return 'polls_result';
     }
@@ -63,18 +55,6 @@ class PollsResult extends \yii\db\ActiveRecord {
         ];
     }
 
-    /**
-     * 
-     * @return scenario for 
-     */
-//    public function scenarios()
-//    {
-//        return [
-//            'default' =>['num', 'id_poll', 'id_answer', 'id_user'],
-//            self::SCENARIO_SINGLE => ['num', 'id_poll', 'id_answer', 'id_user'],
-//            self::SCENARIO_MULTIPLE => ['num', 'id_poll', 'id_user'],
-//        ];
-//    }
     /**
      * @inheritdoc
      * @todo change 'app'/'polls'
@@ -144,11 +124,12 @@ class PollsResult extends \yii\db\ActiveRecord {
                         ->where('id_poll=:id_poll', ['id_poll' => $id_poll])
                         ->max('num');
     }
-/**
- * Return joined number of records
- * @param integer $id_poll
- * @return PollsResult set of records
- */
+
+    /**
+     * Return joined number of records
+     * @param integer $id_poll
+     * @return PollsResult set of records
+     */
     public static function getResults($id_poll) {
         return self::find()
                         ->select('id_answer, count(`id_answer`) as `res`')
