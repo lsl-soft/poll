@@ -13,7 +13,7 @@ use yii\helpers\Html;
     <h2><?= Html::encode(Yii::t('polls', $question)) ?></h2>
     <h3><?= Html::encode(Yii::t('polls', "The results of the poll")) ?></h3>
 
-    <?
+    <?php
 
     /**
      * sort function for array
@@ -61,7 +61,7 @@ use yii\helpers\Html;
     if ($sumRes > 0) {
         foreach ($res as $val) {
             echo "<h3>" . Yii::t('polls', $val['answer']) . ":  " . $val['res'] . " (" . number_format($val['res'] / $sumRes * 100, 2) . "%)" . "</h3>";
-            echo Progress::widget([
+            echo yii\bootstrap\Progress::widget([
                 'percent' => intval($val['res']) / $maxVal * 100,
             ]);
         }
